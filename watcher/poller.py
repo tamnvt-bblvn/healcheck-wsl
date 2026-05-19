@@ -23,8 +23,8 @@ def _configure_logging(log_path: Path | None) -> None:
     fmt = logging.Formatter(
         fmt="%(asctime)sZ %(levelname)s %(message)s",
         datefmt="%Y-%m-%dT%H:%M:%S",
-        converter=time.gmtime,
     )
+    fmt.converter = time.gmtime  # UTC timestamps in log lines
     root = logging.getLogger()
     root.handlers.clear()
     root.setLevel(logging.INFO)
